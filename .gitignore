@@ -1,0 +1,13 @@
+.DS_Store
+
+mysql/*
+
+wp-content/*.*
+
+wp-content/themes/*
+wp-content/plugins/*
+wp-content/uploads/*
+wp-content/upgrade/*
+
+wp-content/mu-plugins/*
+!wp-content/mu-plugins/mailhog.php
