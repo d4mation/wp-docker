@@ -10,7 +10,7 @@ Multi-Container Docker Application for a local WordPress site with SSL, nginx re
 1. Clone this Repository to your computer
 2. `docker-compose up -d` to start the Containers in the background
 3. Visit `docker.test/wp-admin` to install WordPress
-  - You will want to visit `https://docker.test/wp-admin` if you are using SSL so that the WP Site gets configured with a https URL
+    - You will want to visit `https://docker.test/wp-admin` if you are using SSL so that the WP Site gets configured with a https URL
 4. `docker-compose down -v` to remove any unnecessary files when you're done.
 
 You can only have one site up and running at a time using this, but the speed it offers over many other solutions I've used makes it worth it in my opinion.
