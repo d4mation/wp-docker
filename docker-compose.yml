@@ -1,9 +1,9 @@
 version: '3.2'
 services:
   wordpress:
+    build: .
     depends_on:
       - db
-    image: wordpress:fpm
     restart: always
     volumes:
       - ./wp-content:/var/www/html/wp-content
