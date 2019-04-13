@@ -15,6 +15,14 @@ Multi-Container Docker Application for a local WordPress site with SSL, nginx re
 
 You can only have one site up and running at a time using this, but the speed it offers over many other solutions I've used makes it worth it in my opinion.
 
+## Database Management
+
+You can access phpMyAdmin at http://docker.test:8080 and the database tables for your WordPress install will be located under the `wordpress` database. From there you can Import a site backup from another Live/Staging site or otherwise manage the Database as-needed via a GUI.
+
+Your database also lives within a directory called `./mysql`. _Do not delete this_. This is because when you run `docker-compose down -v`, you're actually completely destroying the local server. When you bring it back up again using `docker-compose up -d`, it then pulls in the database from `./mysql` so that none of that data is lost.
+
+You can also access interconnect/it's amazing Search and Replace tool at http://docker.test:8081. If you're importing a database from a Live/Staging site, run this afterwards to Search/Replace your Live/Staging site's URL with `docker.test` in order to access your local environment properly.
+
 ## PHP Debugging
 
 You can configure your favorite IDE to connect to xDebug when using this Docker Application. The primary things you will need to do are configure your Path Mappings and the Port Number.
