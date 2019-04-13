@@ -23,6 +23,54 @@ Your database also lives within a directory called `./mysql`. _Do not delete thi
 
 You can also access interconnect/it's amazing Search and Replace tool at http://docker.test:8081. If you're importing a database from a Live/Staging site, run this afterwards to Search/Replace your Live/Staging site's URL with `docker.test` in order to access your local environment properly.
 
+## WordPress Multisite
+
+To configure this Docker Application to be used as a WordPress Multisite, it will take a little extra configuration.
+
+### New Local Multisites (Not based on a Live/Staging database export)
+
+In `./docker-compose.yml`, you will need to update the `WORDPRESS_CONFIG_EXTRA` Environment Variable for the WordPress Service to look like the following if you're setting up a new, local Multisite (Not importing a Database from a Live/Staging site):
+
+```yml
+environment:
+...
+      WORDPRESS_CONFIG_EXTRA: | 
+        define( 'WP_DEBUG_LOG', true );
+        define( 'WP_ALLOW_MULTISITE', true );
+```
+
+From there, once logged in go to Tools -> Network Setup and follow the instructions there. 
+
+If you choose to do a Sub-Domain setup, it will tell you that it failed to reach a randomly chosen Subdomain, but that's OK. Just add the extra `define()`s to your `./docker-compose.yml` file and then run `docker-compose down -v` and `docker-compose up -d` to restart your server. Your `WORDPRESS_CONFIG_EXTRA` Environment Variable will now look like this:
+
+```yml
+environment:
+...
+      WORDPRESS_CONFIG_EXTRA: | 
+        define( 'WP_DEBUG_LOG', true );
+        define( 'WP_ALLOW_MULTISITE', true );
+        define( 'MULTISITE', true );
+        define( 'SUBDOMAIN_INSTALL', true );
+        define( 'DOMAIN_CURRENT_SITE', 'docker.test' );
+        define( 'PATH_CURRENT_SITE', '/' );
+        define( 'SITE_ID_CURRENT_SITE', 1 );
+        define( 'BLOG_ID_CURRENT_SITE', 1 );
+```
+
+### Local Multisite built from a Live/Staging database
+
+The steps here are similar to above, but you can skip the manual step of enabling the Multisite from the WordPress Dashboard.
+
+Check the `./wp-config.php` file from your site backup and scroll down near the bottom where you begin to see mentions of `WP_ALLOW_MULTISITE` and other such Constants. If you copy those into your `./docker-compose.yml` file under the `WORDPRESS_CONFIG_EXTRA` Environment Variable, you'll be ready to go.
+
+You will however need to ensure that you Search/Replace each of the domains for subsites in your Database. It is possible your subsites had their own domain, so you'll need to replace them with something like `subsitedomain.docker.test` if using a sub-domain install. 
+
+### Accessing Sub-sites on a Sub-domain install
+
+When using a Sub-domain install, you will need to add each of your Sub-domains to your Hosts file manually.
+
+For example, `127.0.0.1 subsite.docker.test`
+
 ## PHP Debugging
 
 You can configure your favorite IDE to connect to xDebug when using this Docker Application. The primary things you will need to do are configure your Path Mappings and the Port Number.
