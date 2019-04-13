@@ -20,7 +20,8 @@ services:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: "define( 'WP_DEBUG_LOG', true );"
+      WORDPRESS_CONFIG_EXTRA: | 
+        define( 'WP_DEBUG_LOG', true );
     container_name: wp_php
   db:
     image: mysql:5.7
