@@ -9,6 +9,7 @@ services:
       - ./wp-content:/var/www/html/wp-content
       - wp:/var/www/html
       - ./config/php-fpm/php.ini:/usr/local/etc/php/php.ini:cached
+      - ./config/php-fpm/php.override.ini:/usr/local/etc/php/conf.d/php.override.ini:cached
       - ./config/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:cached
     ports:
       - 8050:80

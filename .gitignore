@@ -2,6 +2,7 @@
 .vscode
 
 docker-compose.override.yml
+php.override.ini
 
 mysql/*
 
