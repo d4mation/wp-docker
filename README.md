@@ -3,8 +3,12 @@ Multi-Container Docker Application for a local WordPress site with SSL, nginx re
 
 ## Requirements
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop)
-2. (Optional) install the [localhost.crt](https://github.com/d4mation/wp-docker/raw/master/config/ssl-certs/localhost.crt) Certificate to your system so that SSL will show as valid.
-3. (Optional) add `127.0.0.1 docker.test` to your Hosts file
+2. (Recommended) install the [localhost.crt](https://github.com/d4mation/wp-docker/raw/master/config/ssl-certs/localhost.crt) Certificate to your system so that SSL will show as valid.
+    - [Mac Instructions](https://tosbourn.com/getting-os-x-to-trust-self-signed-ssl-certificates/)
+    - [Windows Instructions](https://www.poweradmin.com/help/sslhints/ie.aspx) (It will work with other browsers, but installing it using IE appears to be the simplest way)
+3. (Recommended) add `127.0.0.1 docker.test` to your Hosts file
+    - [Mac Instructions](https://www.hostinger.com/tutorials/how-to-edit-hosts-file-macos)
+    - [Windows Instructions](https://www.hostinger.com/tutorials/dns/how-to-emulate-edit-windows-hosts-file)
 
 ## Usage
 1. Clone this Repository to your computer
@@ -13,7 +17,7 @@ Multi-Container Docker Application for a local WordPress site with SSL, nginx re
     - You will want to visit `https://docker.test/wp-admin` if you are using SSL so that the WP Site gets configured with a https URL
 4. `docker-compose down -v` to remove any unnecessary files when you're done.
 
-You can only have one site up and running at a time using this, but the speed it offers over many other solutions I've used makes it worth it in my opinion.
+You can only have one WordPress install up and running at a time using this, but the speed it offers over many other solutions I've used makes it worth it in my opinion.
 
 ## Database Management
 
