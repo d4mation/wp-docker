@@ -79,6 +79,10 @@ When using a Sub-domain install, you will need to add each of your Sub-domains t
 
 For example, `127.0.0.1 subsite.docker.test`
 
+## Outbound E-Mails
+
+Any outbound e-mails will not leave your local environment and will instead be viewable at http://docker.test:8025. This is very helpful when testing functionality that would send emails out but you only want to check whether or not it would have worked or if you want to check to see what an email would look like. 
+
 ## PHP Debugging
 
 You can configure your favorite IDE to connect to xDebug when using this Docker Application. The primary things you will need to do are configure your Path Mappings and the Port Number.
