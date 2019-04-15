@@ -1,0 +1,6 @@
+version: '3.2'
+services:
+  wordpress:
+    environment: 
+      WORDPRESS_CONFIG_EXTRA: | 
+        define( 'WP_DEBUG_LOG', true );
