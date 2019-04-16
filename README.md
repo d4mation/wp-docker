@@ -12,10 +12,10 @@ Multi-Container Docker Application for a local WordPress site with SSL, nginx re
 
 ## Usage
 1. Clone this Repository to your computer
-2. `docker-compose up -d` to start the Containers in the background
+2. Run the `start-server` script under `./scripts/` or `docker-compose up -d` to start the Containers in the background
 3. Visit `docker.test/wp-admin` to install WordPress
     - You will want to visit `https://docker.test/wp-admin` if you are using SSL so that the WP Site gets configured with a https URL
-4. `docker-compose down -v` to remove any unnecessary files when you're done.
+4. Run the the `stop-server` script under `./scripts/` or `docker-compose down -v` to remove any unnecessary files when you're done.
 
 You can only have one WordPress install up and running at a time using this, but the speed it offers over many other solutions I've used makes it worth it in my opinion.
 
@@ -23,7 +23,7 @@ You can only have one WordPress install up and running at a time using this, but
 
 You can access phpMyAdmin at http://docker.test:8080 and the database tables for your WordPress install will be located under the `wordpress` database. From there you can Import a site backup from another Live/Staging site or otherwise manage the Database as-needed via a GUI.
 
-Your database also lives within a directory called `./mysql`. _Do not delete this_. This is because when you run `docker-compose down -v`, you're actually completely destroying the local server. When you bring it back up again using `docker-compose up -d`, it then pulls in the database from `./mysql` so that none of that data is lost.
+Your database also lives within a directory called `./mysql/`. _Do not delete this_. This is because when you run the `stop-server` script under `./scripts/` or `docker-compose down -v`, you're actually completely destroying the local server. When you bring it back up again using the `start-server` script under `./scripts/` or `docker-compose up -d`, it then pulls in the database from `./mysql/` so that none of that data is lost.
 
 You can also access interconnect/it's amazing Search and Replace tool at http://docker.test:8081. If you're importing a database from a Live/Staging site, run this afterwards to Search/Replace your Live/Staging site's URL with `docker.test` in order to access your local environment properly.
 
@@ -43,9 +43,9 @@ environment:
         define( 'WP_ALLOW_MULTISITE', true );
 ```
 
-Then run `docker-compose down -v` followed by `docker-compose up -d`. From there, once logged in go to Tools -> Network Setup and follow the instructions there. 
+Then run the `restart-server` script under `./scripts/` or `docker-compose down -v` followed by `docker-compose up -d`. From there, once logged in go to Tools -> Network Setup and follow the instructions there. 
 
-If you choose to do a Sub-Domain setup, it will tell you that it failed to reach a randomly chosen Subdomain, but that's OK. Just add the extra `define()`s/Constants to your `./docker-compose.override.yml` file and then run `docker-compose down -v` and `docker-compose up -d` to restart your server. Your `WORDPRESS_CONFIG_EXTRA` Environment Variable will now look like this:
+If you choose to do a Sub-Domain setup, it will tell you that it failed to reach a randomly chosen Subdomain, but that's OK. Just add the extra `define()`s/Constants to your `./docker-compose.override.yml` file and then run the `restart-server` script under `./scripts/` or `docker-compose down -v` and `docker-compose up -d` to restart your server. Your `WORDPRESS_CONFIG_EXTRA` Environment Variable will now look like this:
 
 ```yml
 environment:
