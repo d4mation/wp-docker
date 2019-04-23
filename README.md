@@ -108,3 +108,12 @@ Here's an example configuration for [Visual Studio Code](https://code.visualstud
 The above configuration will tell your IDE that any requests coming from xDebug should have the file path search/replaced with a local file path to your computer. It will then handle any breakpoints that you've set within any files.
 
 If you need to set a specific IDEKEY for your IDE to communicate with xDebug, you can set this by adding `xdebug.idekey = <YOUR_ID_KEY>` to `./config/php-fpm/xdebug.ini`
+
+## Contributing 
+
+If you feel that a change or addition to this environment would be useful, feel free to open an Issue or a Pull Request! If you are going to open a Pull Request though, be sure that any changes to your `./docker-compose.override.yml` and `./config/php-fpm/php.override.ini` files are being ignored properly. You can do this by running:
+
+```bash
+git update-index --skip-worktree docker-compose.override.yml
+git update-index --skip-worktree config/php-fpm/php.override.ini
+```
