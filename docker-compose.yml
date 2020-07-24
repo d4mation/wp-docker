@@ -6,8 +6,7 @@ services:
       - db
     restart: always
     volumes:
-      - ./wp-content:/var/www/html/wp-content
-      - wp:/var/www/html
+      - ./wordpress:/var/www/html
       - ./config/php-fpm/php.ini:/usr/local/etc/php/php.ini:cached
       - ./config/php-fpm/php.override.ini:/usr/local/etc/php/conf.d/php.override.ini:cached
       - ./config/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:cached
@@ -74,8 +73,7 @@ services:
     volumes:
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf:cached
       - ./config/ssl-certs:/etc/nginx/certs:cached
-      - wp:/var/www/html:cached
-      - ./wp-content:/var/www/html/wp-content:cached
+      - ./wordpress:/var/www/html:cached
     networks:
       frontend:
         aliases:
@@ -93,5 +91,3 @@ services:
 networks:
   database:
   frontend:
-volumes:
-  wp:
